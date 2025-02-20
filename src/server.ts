@@ -50,7 +50,7 @@ app.get('/', (req, res) => {
 });
 
 // Conexión a MongoDB
-mongoose;
+//mongoose;
 mongoose
     .connect(process.env.MONGODB_URI || 'mongodb+srv://joan:1234@cluster0.3owhs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
     .then(() => console.log('Connected to DB'))
@@ -59,6 +59,5 @@ mongoose
 // Iniciar el servidor
 app.listen(LOCAL_PORT, () => {
     console.log('Server listening on port: ' + LOCAL_PORT);
-    console.log(`Servidor corriendo en http://localhost:${LOCAL_PORT}`);
-    console.log(`Swagger disponible en http://localhost:${LOCAL_PORT}/api-docs`);
+    console.log(`Swagger disponible a http://localhost:${LOCAL_PORT}/api-docs`);
 });
