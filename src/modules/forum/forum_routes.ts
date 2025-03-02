@@ -9,6 +9,8 @@ const router = express.Router();
  *   post:
  *     summary: Crea una nueva entrada en el foro
  *     description: Añade una nueva entrada al foro.
+ *     tags:
+ *       - Forum
  *     requestBody:
  *       required: true
  *       content:
@@ -32,6 +34,8 @@ router.post('/forum', createEntryHandler);
  *   get:
  *     summary: Obtiene todas las entradas del foro
  *     description: Retorna una lista de todas las entradas del foro.
+ *     tags:
+ *       - Forum
  *     responses:
  *       200:
  *         description: Éxito
@@ -55,6 +59,8 @@ router.get('/forum', getAllForumHandler);
  *   get:
  *     summary: Obtiene una entrada del foro por ID
  *     description: Retorna los detalles de una entrada específica del foro.
+ *     tags:
+ *       - Forum
  *     parameters:
  *       - name: id
  *         in: path
@@ -84,6 +90,8 @@ router.get('/forum/:id', getEntryByIdHandler);
  *   put:
  *     summary: Actualiza una entrada del foro por ID
  *     description: Modifica los detalles de una entrada específica del foro.
+ *     tags:
+ *       - Forum
  *     parameters:
  *       - name: id
  *         in: path
@@ -115,6 +123,8 @@ router.put('/forum/:id', updateEntryHandler);
  *   delete:
  *     summary: Elimina una entrada del foro por ID
  *     description: Elimina una entrada específica del foro.
+ *     tags:
+ *       - Forum
  *     parameters:
  *       - name: id
  *         in: path

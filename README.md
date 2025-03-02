@@ -19,7 +19,7 @@ npm install
 Crea un fitxer `.env` a la arrel del projecte i defineix les següents variables d'entorn:
 ```env
 MONGO_URI=mongodb://localhost:27017/la_teva_base_de_dades
-PORT=3000
+PORT=9000
 ```
 
 ## Execució
@@ -32,7 +32,7 @@ npm start
 ## Documentació
 Swagger està disponible a:
 ```
-http://localhost:3000/api-docs
+http://localhost:9000/api-docs
 ```
 
 ## Dependències Principals

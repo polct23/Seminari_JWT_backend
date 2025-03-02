@@ -17,6 +17,8 @@ const router = express.Router();
  *   get:
  *     summary: Página de bienvenida
  *     description: Retorna un mensaje de bienvenida.
+ *     tags:
+ *       - Main
  *     responses:
  *       200:
  *         description: Éxito
@@ -37,6 +39,8 @@ router.get('/main', saveMethodHandler);
  *   post:
  *     summary: Crea un nuevo usuario
  *     description: Añade los detalles de un nuevo usuario.
+ *     tags:
+ *       - Users
  *     requestBody:
  *       required: true
  *       content:
@@ -62,6 +66,8 @@ router.post('/users', createUserHandler);
  *   get:
  *     summary: Obtiene todos los usuarios
  *     description: Retorna una lista de todos los usuarios.
+ *     tags:
+ *       - Users
  *     responses:
  *       200:
  *         description: Éxito
@@ -87,6 +93,8 @@ router.get('/users', getAllUsersHandler);
  *   get:
  *     summary: Obtiene un usuario por ID
  *     description: Retorna los detalles de un usuario específico.
+ *     tags:
+ *       - Users
  *     parameters:
  *       - name: id
  *         in: path
@@ -118,6 +126,8 @@ router.get('/users/:id', getUserByIdHandler);
  *   put:
  *     summary: Actualiza un usuario por ID
  *     description: Modifica los detalles de un usuario específico.
+ *     tags:
+ *       - Users
  *     parameters:
  *       - name: id
  *         in: path
@@ -151,6 +161,8 @@ router.put('/users/:id', updateUserHandler);
  *   delete:
  *     summary: Elimina un usuario por ID
  *     description: Elimina un usuario específico de la base de datos.
+ *     tags:
+ *       - Users
  *     parameters:
  *       - name: id
  *         in: path

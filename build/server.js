@@ -19,6 +19,20 @@ const swaggerOptions = {
             version: '1.0.0',
             description: 'Documentación de la API de Usuarios'
         },
+        tags: [
+            {
+                name: 'Users',
+                description: 'Rutas relacionadas con la gestión de usuarios',
+            },
+            {
+                name: 'Forum',
+                description: 'Rutas relacionadas con el forum',
+            },
+            {
+                name: 'Main',
+                description: 'Rutas principales de la API',
+            }
+        ],
         servers: [
             {
                 url: `http://localhost:${LOCAL_PORT}`
