@@ -37,7 +37,7 @@ http://localhost:3000/api-docs
 
 ## Dependències Principals
 - `dotenv`: Gestió de variables d'entorn.
-- `mongodb` i `mongoose`: Base de dades MongoDB i ODM.
+- `mongodb` i `mongoose`: Base de dades MongoDB.
 - `swagger-jsdoc` i `swagger-ui-express`: Generació de documentació.
 - `express`: Framework per a l'API.
 
