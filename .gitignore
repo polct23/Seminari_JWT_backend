@@ -11,8 +11,8 @@ node_modules/
 *.log
 
 # Ignorar archivos de dependencias
-package-lock.json
-yarn.lock
+#package-lock.json
+#yarn.lock
 
 # Ignorar archivos de compilación (si usas TypeScript o Babel)
 dist/
