@@ -16,14 +16,14 @@ npm install
 ```
 
 ## Configuració
-Crea un fitxer `.env` a la arrel del projecte i defineix les següents variables d'entorn:
+Crea un fitxer `.env` a la arrel del projecte i defineix les següents variables d'entorn//canviar les strings directament en el codi a les línies 16 (Port) i 69 (uri mongo) :
 ```env
 MONGO_URI=mongodb://localhost:27017/la_teva_base_de_dades
 PORT=9000
 ```
 
 ## Execució
-Per iniciar l'API en mode desenvolupament:
+Per iniciar l'API (tsc + cd ./build + node server.js):
 
 ```sh
 npm start
