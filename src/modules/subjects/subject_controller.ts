@@ -1,4 +1,4 @@
-import { saveMethod, createSubject, getAllSubjects, getSubjectById, updateSubject, deleteSubject, addStudentToSubject } from "./subject_service.js";
+import { saveMethod, createSubject, getAllSubjects, getSubjectById, updateSubject, deleteSubject, getUsersBySubject } from "./subject_service.js";
 
 import express, { Request, Response } from 'express';
 
@@ -56,12 +56,11 @@ export const deleteSubjectHandler = async (req: Request, res: Response) => {
     }
 };
 
-export const addStudentToSubjectHandler = async (req: Request, res: Response) => {
+export const getUsersBySubjectHandler = async (req: Request, res: Response) => {
     try {
-        const data = await addStudentToSubject(req.params.subjectId, req.params.userId);
+        const data = await getUsersBySubject(req.params.id);
         res.json(data);
     } catch (error: any) {
         res.status(500).json({ message: error.message });
     }
-}
-
+};

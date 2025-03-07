@@ -53,3 +53,5 @@ http://localhost:9000/api-docs
 -Fer totes les carpetes (model, service, controller, routes) del nou model subjects, fer el CRUD i implementar una -petició que obtingui com a resposta un array de tots els users que estan cursant l'assignatura.
 
 
+## Referencies Solucio Exercici
+-El propi model del exemple, chatGpt, w3schools, youtube..

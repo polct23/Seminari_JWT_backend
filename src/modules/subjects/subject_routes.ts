@@ -7,7 +7,7 @@ import {
     getSubjectByIdHandler,
     updateSubjectHandler,
     deleteSubjectHandler,
-    addStudentToSubjectHandler
+    getUsersBySubjectHandler
 } from '../subjects/subject_controller.js';
 
 const router = express.Router();
@@ -195,55 +195,31 @@ router.put('/subjects/:id', updateSubjectHandler);
  */
 router.delete('/subjects/:id', deleteSubjectHandler);
 
-
 /**
  * @openapi
- * /api/subjects/{subjectId}/users/{userId}:
- *   put:
- *     summary: Añade nuevo estudiante a una asignatura
- *     description: Añade los detalles de un nuevo estudiante a una asignatura.
+ * /api/subjects/{id}/users:
+ *   get:
+ *     summary: Obtiene todos los usuarios en una asignatura
+ *     description: Retorna una lista de todos los usuarios en una asignatura específica.
  *     tags:
  *       - Subjects
  *     parameters:
- *       - in: path
- *         name: subjectId
+ *       - name: id
+ *         in: path
  *         required: true
  *         schema:
  *           type: string
- *         description: ID de la asignatura
- *       - in: path
- *         name: userId
- *         required: true
- *         schema:
- *           type: string
- *         description: ID del estudiante
  *     responses:
  *       200:
- *         description: Estudiante añadido exitosamente
+ *         description: Éxito
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                   example: Estudiante añadido exitosamente
- *                 subject:
- *                   type: object
- *                   properties:
- *                     name:
- *                       type: string
- *                     description:
- *                       type: string
- *                     teacher:
- *                       type: string
- *                     students:
- *                       type: array
- *                       items:
- *                         type: string
- *                         format: uuid
+ *               type: array
+ *               items:
+ *                 type: string
  */
-router.put('/subjects/:subjectId/users/:userId', addStudentToSubjectHandler);
+router.get('/subjects/:id/users', getUsersBySubjectHandler);
 
 
 export default router;

@@ -1,4 +1,5 @@
 import Subject, { ISubject } from "../subjects/subject_model.js"
+import mongoose from "mongoose";
 
 export const saveMethod = () => {
     return 'Hola';
@@ -25,12 +26,8 @@ export const deleteSubject = async (id: string) => {
     return await Subject.deleteOne({ _id: id });
 };
 
-export const addStudentToSubject = async (subjectId: string, userId: string) => {
-    return await Subject.updateOne({
-        _id: subjectId
-    }, {
-        $push: {
-            students: userId
-        }
-    });
+export const getUsersBySubject = async (id: string) => {
+    const subject = await Subject.findById(id).populate('students');
+    console.log(subject);
+    return subject ? subject.students : [];
 };
