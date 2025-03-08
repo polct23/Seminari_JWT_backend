@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import userRoutes from './modules/users/user_routes.js'; // Nota el .js al final
 import forumRoutes from './modules/forum/forum_routes.js'; // Nota el .js al final
 import subjectRoutes from './modules/subjects/subject_routes.js'; // Nota el .js al final
+import authRoutes from './modules/auth/auth_routes.js';
 import { corsHandler } from './middleware/corsHandler.js';
 import { loggingHandler } from './middleware/loggingHandler.js';
 import { routeNotFound } from './middleware/routeNotFound.js';
@@ -39,6 +40,10 @@ const swaggerOptions = {
                 description: 'Rutas relacionadas con las asignaturas',
             },
             {
+                name: 'Auth',
+                description: 'Rutas relacionadas con la autenticación',
+            },
+            {
               name: 'Main',
               description: 'Rutas principales de la API',
             }
@@ -49,7 +54,7 @@ const swaggerOptions = {
             }
         ]
     },
-    apis: ['./modules/users/*.js', './modules/forum/*.js', './modules/subjects/*.js'] // Asegúrate de que esta ruta apunta a tus rutas
+    apis: ['./modules/users/*.js', './modules/forum/*.js', './modules/subjects/*.js', './modules/auth/*.js'] // Asegúrate de que esta ruta apunta a tus rutas
 };
 
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
@@ -64,6 +69,7 @@ app.use(corsHandler);
 app.use('/api', userRoutes);
 app.use('/api', forumRoutes);
 app.use('/api', subjectRoutes);
+app.use('/api', authRoutes);
 // Rutes de prova
 app.get('/', (req, res) => {
     res.send('Welcome to my API');

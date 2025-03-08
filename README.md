@@ -1,7 +1,9 @@
-# Prova API
+# SEMINARI JWT
 
 ## Descripció
 Una API bàsica desenvolupada en Node.js amb TypeScript, utilitzant Express i Mongoose per a la gestió de dades en MongoDB. A més, s'inclou documentació amb Swagger.
+
+A partir del projecte d'exemple del seminari de l'API muntarem un exemple d'ús de JWT amb autentificació.
 
 ## Requisits previs
 Abans d'executar el projecte, assegura't de tenir instal·lat:

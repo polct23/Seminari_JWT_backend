@@ -1,25 +1,35 @@
 import mongoose from "mongoose";
+import { Auth } from "../auth/auth_model.js";
 
-const userSchema = new mongoose.Schema({
-    name :{
-        type: String,
-        required : true
+const userSchema = new mongoose.Schema(
+    {
+        name: {
+            required: true,
+            type: String
+        },
+        password: {
+            type: String,
+            required: true
+        },
+        age: {
+            type: Number,
+            default: '0'
+        },
+        email: {
+            type: String,
+            required: true,
+            unique: true
+        }
     },
-    age: {
-        type: Number,
-        required : true
-    },
-    email: {
-        type : String,
-        required : true
+    {
+        versionKey: false,
+        timestamps: true,
     }
-});
+);
 
-export interface IUser{
+export interface IUser extends Auth{
     name : string;
     age : number;
-    email : string;
-
 }
 
 const User = mongoose.model('User', userSchema);

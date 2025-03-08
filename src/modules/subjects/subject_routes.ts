@@ -1,5 +1,8 @@
 import express from 'express';
-
+/**
+ * Solo pueden acceder a esta ruta las personas que tienen session iniciada!
+ * que tengan un JWT valido
+ */
 import {
     saveMethodHandler,
     createSubjectHandler,
@@ -9,6 +12,7 @@ import {
     deleteSubjectHandler,
     getUsersBySubjectHandler
 } from '../subjects/subject_controller.js';
+import { checkJwt } from '../../middleware/session.js';
 
 const router = express.Router();
 
@@ -96,7 +100,7 @@ router.post('/subjects', createSubjectHandler);
  *                       type: string
  *                       format: uuid
  */
-router.get('/subjects', getAllSubjectsHandler);
+router.get('/subjects', checkJwt, getAllSubjectsHandler);
 
 /**
  * @openapi
