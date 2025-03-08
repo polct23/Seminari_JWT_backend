@@ -45,13 +45,7 @@ http://localhost:9000/api-docs
 - `typescript`: Suport per a TypeScript.
 - `@types/*`: Definicions de tipus per a biblioteques utilitzades.
 
-## Feina seminari
--Fer un nou model (subjects) que tingui com a mínim:
--name
--teacher
--alumni (l'atribut alumnes és un array d'ObjectId que fa referència als Ids dels usuaris)
--Fer totes les carpetes (model, service, controller, routes) del nou model subjects, fer el CRUD i implementar una -petició que obtingui com a resposta un array de tots els users que estan cursant l'assignatura.
-
-
-## Referencies Solucio Exercici
--El propi model del exemple, chatGpt, w3schools, youtube..
+## Dependències JWT
+-Comanda per instalar dependències: 'npm i bcryptjs jsonwebtoken'.
+- '@types/bcryptjs' -> Tipats
+- '@types/jsonwebtoken' -> Tipats
