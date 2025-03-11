@@ -1,8 +1,4 @@
 import express from 'express';
-/**
- * Solo pueden acceder a esta ruta las personas que tienen session iniciada!
- * que tengan un JWT valido
- */
 import {
     saveMethodHandler,
     createSubjectHandler,
@@ -17,7 +13,32 @@ import { checkJwt } from '../../middleware/session.js';
 const router = express.Router();
 
 /**
- * @openapi
+ * @swagger
+ * components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ *   schemas:
+ *     Subject:
+ *       type: object
+ *       properties:
+ *         name:
+ *           type: string
+ *         description:
+ *           type: string
+ *         teacher:
+ *           type: string
+ *         students:
+ *           type: array
+ *           items:
+ *             type: string
+ *             format: uuid
+ */
+
+/**
+ * @swagger
  * /api/main:
  *   get:
  *     summary: Página de bienvenida
@@ -39,7 +60,7 @@ const router = express.Router();
 router.get('/main', saveMethodHandler);
 
 /**
- * @openapi
+ * @swagger
  * /api/subjects:
  *   post:
  *     summary: Crea una nueva asignatura
@@ -51,19 +72,7 @@ router.get('/main', saveMethodHandler);
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *               description:
- *                 type: string
- *               teacher:
- *                 type: string
- *               students:
- *                 type: array
- *                 items:
- *                   type: string
- *                   format: uuid
+ *             $ref: '#/components/schemas/Subject'
  *     responses:
  *       201:
  *         description: Asignatura creada exitosamente
@@ -71,13 +80,15 @@ router.get('/main', saveMethodHandler);
 router.post('/subjects', createSubjectHandler);
 
 /**
- * @openapi
+ * @swagger
  * /api/subjects:
  *   get:
  *     summary: Obtiene todas las asignaturas
  *     description: Retorna una lista de todas las asignaturas.
  *     tags:
  *       - Subjects
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Éxito
@@ -86,24 +97,12 @@ router.post('/subjects', createSubjectHandler);
  *             schema:
  *               type: array
  *               items:
- *                 type: object
- *                 properties:
- *                   name:
- *                     type: string
- *                   description:
- *                     type: string
- *                   teacher:
- *                     type: string
- *                   students:
- *                     type: array
- *                     items:
- *                       type: string
- *                       format: uuid
+ *                 $ref: '#/components/schemas/Subject'
  */
 router.get('/subjects', checkJwt, getAllSubjectsHandler);
 
 /**
- * @openapi
+ * @swagger
  * /api/subjects/{id}:
  *   get:
  *     summary: Obtiene una asignatura por ID
@@ -123,24 +122,12 @@ router.get('/subjects', checkJwt, getAllSubjectsHandler);
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 name:
- *                   type: string
- *                 description:
- *                   type: string
- *                 teacher:
- *                   type: string
- *                 students:
- *                   type: array
- *                   items:
- *                     type: string
- *                     format: uuid
+ *               $ref: '#/components/schemas/Subject'
  */
 router.get('/subjects/:id', getSubjectByIdHandler);
 
 /**
- * @openapi
+ * @swagger
  * /api/subjects/{id}:
  *   put:
  *     summary: Actualiza una asignatura por ID
@@ -159,19 +146,7 @@ router.get('/subjects/:id', getSubjectByIdHandler);
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *               description:
- *                 type: string
- *               teacher:
- *                 type: string
- *               students:
- *                 type: array
- *                 items:
- *                   type: string
- *                   format: uuid
+ *             $ref: '#/components/schemas/Subject'
  *     responses:
  *       200:
  *         description: Asignatura actualizada exitosamente
@@ -179,7 +154,7 @@ router.get('/subjects/:id', getSubjectByIdHandler);
 router.put('/subjects/:id', updateSubjectHandler);
 
 /**
- * @openapi
+ * @swagger
  * /api/subjects/{id}:
  *   delete:
  *     summary: Elimina una asignatura por ID
@@ -200,7 +175,7 @@ router.put('/subjects/:id', updateSubjectHandler);
 router.delete('/subjects/:id', deleteSubjectHandler);
 
 /**
- * @openapi
+ * @swagger
  * /api/subjects/{id}/users:
  *   get:
  *     summary: Obtiene todos los usuarios en una asignatura
@@ -224,6 +199,5 @@ router.delete('/subjects/:id', deleteSubjectHandler);
  *                 type: string
  */
 router.get('/subjects/:id/users', getUsersBySubjectHandler);
-
 
 export default router;
