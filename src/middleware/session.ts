@@ -7,23 +7,21 @@ interface RequestExt extends Request {
 }
 
 const checkJwt = (req: RequestExt, res: Response, next: NextFunction) => {
-
-    try{
+    try {
         const jwtByUser = req.headers.authorization || null;
         const jwt = jwtByUser?.split(' ').pop(); // ['Bearer', '11111'] -> ['11111']
+        console.log(jwt);
         const isUser = verifyToken(`${jwt}`);
-        if(!isUser){
-            res.status(401);
-            res.send("NO_TIENES_UN_JWT_VALIDO")
-        } else {
-            req.user = isUser;
-            next();
+        
+        if (!isUser) {
+            return res.status(401).send("NO_TIENES_UN_JWT_VALIDO"); // 👈 Usa return para evitar llamar a next()
         }
         
-    } catch(e) {
-        console.log({ e });
-        res.status(400);
-        res.send("SESSION_NO_VALID");
+        req.user = isUser;
+        next(); // Solo si el token es válido, pasa al siguiente middleware
+    } catch (e) {
+        console.error("Error en checkJwt:", e);
+        return res.status(400).send("SESSION_NO_VALID"); // 👈 Asegúrate de detener con return
     }
 };
 

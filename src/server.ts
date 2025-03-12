@@ -8,6 +8,7 @@ import authRoutes from './modules/auth/auth_routes.js';
 import { corsHandler } from './middleware/corsHandler.js';
 import { loggingHandler } from './middleware/loggingHandler.js';
 import { routeNotFound } from './middleware/routeNotFound.js';
+import { checkJwt } from './middleware/session.js';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
 
