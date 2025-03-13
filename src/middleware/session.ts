@@ -14,14 +14,14 @@ const checkJwt = (req: RequestExt, res: Response, next: NextFunction) => {
         const isUser = verifyToken(`${jwt}`);
         
         if (!isUser) {
-            return res.status(401).send("NO_TIENES_UN_JWT_VALIDO"); // 👈 Usa return para evitar llamar a next()
+            return res.status(401).send("NO_TIENES_UN_JWT_VALIDO"); // return para evitar llamar a next()
         }
         
         req.user = isUser;
         next(); // Solo si el token es válido, pasa al siguiente middleware
     } catch (e) {
         console.error("Error en checkJwt:", e);
-        return res.status(400).send("SESSION_NO_VALID"); // 👈 Asegúrate de detener con return
+        return res.status(401).send("SESSION_NO_VALID"); // Asegúrate de detener con return
     }
 };
 
