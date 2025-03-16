@@ -52,7 +52,7 @@ http://localhost:9000/api-docs
 - '@types/bcryptjs' -> Tipats
 - '@types/jsonwebtoken' -> Tipats
 
-##Configuració d'OAuth 2.0 amb Google
+## Configuració d'OAuth 2.0 amb Google
 
 Crear les credencials d'OAuth 2.0
 
