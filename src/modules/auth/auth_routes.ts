@@ -1,6 +1,6 @@
 // src/routes/user_routes.ts
 import express from 'express';
-import { registerCtrl, loginCtrl } from "../auth/auth_controller.js";
+import { registerCtrl, loginCtrl, googleAuthCtrl, googleAuthCallback } from "../auth/auth_controller.js";
 
 const router = express.Router();
 
@@ -89,5 +89,30 @@ router.post("/auth/register", registerCtrl);
  *         description: Error en la solicitud
  */
 router.post("/auth/login", loginCtrl);
+/**
+ * @swagger
+ * /api/auth/google:
+ *   get:
+ *     summary: Redirige al usuario a Google para autenticarse
+ *     tags: [Auth]
+ *     responses:
+ *       302:
+ *         description: Redirección a Google para autenticación
+ */
+router.get('/auth/google',googleAuthCtrl );
+
+/**
+ * @swagger
+ * /api/auth/google/callback:
+ *   get:
+ *     summary: Callback de Google OAuth
+ *     tags: [Auth]
+ *     responses:
+ *       200:
+ *         description: Autenticación exitosa, redirige al frontend con el token
+ *       400:
+ *         description: Error en la autenticación
+ */
+router.get('/auth/google/callback', googleAuthCallback);
 
 export default router;

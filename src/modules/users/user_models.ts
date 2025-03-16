@@ -19,7 +19,8 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true,
             unique: true
-        }
+        },
+        googleId: { type: String },
     },
     {
         versionKey: false,
@@ -30,6 +31,10 @@ const userSchema = new mongoose.Schema(
 export interface IUser extends Auth{
     name : string;
     age : number;
+    password: string;
+    email: string;
+    googleId: string;
+    
 }
 
 const User = mongoose.model('User', userSchema);

@@ -75,7 +75,6 @@ const swaggerOptions = {
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
 // Middleware
 app.use(express.json());
 app.use(loggingHandler);
@@ -93,7 +92,7 @@ app.get('/', (req, res) => {
 // Conexión a MongoDB
 //mongoose;
 mongoose
-    .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/')
+    .connect(process.env.MONGODB_URI || 'mongodb+srv://joan:1234@cluster0.3owhs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
     .then(() => console.log('Connected to DB'))
     .catch((error) => console.error('DB Connection Error:', error));
 
@@ -102,3 +101,7 @@ app.listen(LOCAL_PORT, () => {
     console.log('Server listening on port: ' + LOCAL_PORT);
     console.log(`Swagger disponible a http://localhost:${LOCAL_PORT}/api-docs`);
 });
+function cors(arg0: { origin: string; credentials: boolean; }): any {
+    throw new Error('Function not implemented.');
+}
+

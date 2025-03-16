@@ -13,3 +13,4 @@ export const SERVER = {
     SERVER_HOSTNAME,
     SERVER_PORT
 };
+

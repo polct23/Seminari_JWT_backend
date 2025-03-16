@@ -50,6 +50,8 @@ router.get('/main', saveMethodHandler);
  *             properties:
  *               name:
  *                 type: string
+ *               password:
+ *                 type: string
  *               age:
  *                 type: integer
  *               email:
