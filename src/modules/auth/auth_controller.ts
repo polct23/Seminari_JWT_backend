@@ -38,7 +38,7 @@ const googleAuthCtrl = async(req: Request, res: Response) =>{
         return res.status(500).json({ message: "Error interno de configuración" });
     }
     const rootUrl = 'https://accounts.google.com/o/oauth2/v2/auth'; //ojo tema versió
-    const options = new URLSearchParams({
+    const options = new URLSearchParams({ // codi amb el que google respon
         redirect_uri: process.env.GOOGLE_OAUTH_REDIRECT_URL!,
         client_id: process.env.GOOGLE_CLIENT_ID!,
         access_type: 'offline',
@@ -70,11 +70,10 @@ const googleAuthCallback = async (req: Request, res: Response) => {
         // Configurar cookies no https (secure)--> acces des del web.
         res.cookie('token', authData.token, {
             httpOnly: true,
-            secure: false,
-            sameSite: 'lax',
+            secure: false, 
+            sameSite: 'none',
             maxAge: 86400000 // 1 día
-        });    
-
+        });  
         console.log(authData.token);
         res.redirect(`http://localhost:4200/?token=${authData.token}`);   
     } catch (error: any) {
