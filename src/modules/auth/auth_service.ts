@@ -21,7 +21,7 @@ const loginUser = async ({ email, password }: Auth) => {
     const checkIs = await User.findOne({ email });
     if(!checkIs) return "NOT_FOUND_USER";
 
-    const passwordHash = checkIs.password; //El encriptado que viene de la bbdd
+    const passwordHash = checkIs.password; //El encriptado que ve de la bbdd
     const isCorrect = await verified(password, passwordHash);
     if(!isCorrect) return "INCORRECT_PASSWORD";
 
@@ -51,7 +51,7 @@ const googleAuth = async (code: string) => {
             token_type: string;
             id_token?: string;
         }
-
+        //axios --> llibreria que s'utilitza per a fer peticions HTTP
         const tokenResponse = await axios.post<TokenResponse>('https://oauth2.googleapis.com/token', {
             code,
             client_id: process.env.GOOGLE_CLIENT_ID,
@@ -62,7 +62,7 @@ const googleAuth = async (code: string) => {
 
         const access_token = tokenResponse.data.access_token;
         console.log("Access Token:", access_token); 
-        // Obtiene el perfil del usuario
+        // Obté el perfil d'usuari
         const profileResponse = await axios.get('https://www.googleapis.com/oauth2/v1/userinfo', {
             params: { access_token},
             headers: { Accept: 'application/json',},
@@ -71,7 +71,7 @@ const googleAuth = async (code: string) => {
 
         const profile = profileResponse.data as {name:string, email: string; id: string };
         console.log("Access profile:", profile); 
-        // Busca o crea el usuario en la base de datos
+        // Busca o crea el perfil a la BBDD
         let user = await User.findOne({ 
             $or: [{name: profile.name},{ email: profile.email }, { googleId: profile.id }] 
         });
