@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { registerNewUser, loginUser, googleAuth } from "../auth/auth_service.js";
+import { refreshAccessToken } from "../auth/auth_service.js";
 
 const registerCtrl = async ({body}: Request, res: Response) => {
     try{
@@ -30,7 +31,24 @@ const loginCtrl = async ({ body }: Request, res: Response) => {
         return res.status(500).json({ message: error.message });
     }
 };
+const refreshTokenCtrl = async (req: Request, res: Response) => {
+    const { refreshToken } = req.body;
 
+    if (!refreshToken) {
+        return res.status(400).json({ message: "Refresh token is required" });
+    }
+
+    try {
+        const newToken = await refreshAccessToken(refreshToken);
+        if (newToken === "INVALID_REFRESH_TOKEN") {
+            return res.status(403).json({ message: "Invalid refresh token" });
+        }
+
+        res.json(newToken);
+    } catch (error: any) {
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
 const googleAuthCtrl = async(req: Request, res: Response) =>{
     const redirectUri = process.env.GOOGLE_OAUTH_REDIRECT_URL;
     if (!redirectUri) {

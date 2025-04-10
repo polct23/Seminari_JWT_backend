@@ -20,7 +20,12 @@ const userSchema = new mongoose.Schema(
             required: true,
             unique: true
         },
-        googleId: { type: String },
+        googleId: { 
+            type: String 
+        },
+        refreshToken: { 
+            type: String // Nuevo campo para almacenar el refresh token
+        },
     },
     {
         versionKey: false,
@@ -28,13 +33,13 @@ const userSchema = new mongoose.Schema(
     }
 );
 
-export interface IUser extends Auth{
-    name : string;
-    age : number;
+export interface IUser extends Auth {
+    name: string;
+    age: number;
     password: string;
     email: string;
     googleId: string;
-    
+    refreshToken?: string; // Nuevo campo en la interfaz
 }
 
 const User = mongoose.model('User', userSchema);

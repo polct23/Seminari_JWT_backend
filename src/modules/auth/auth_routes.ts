@@ -114,5 +114,35 @@ router.get('/auth/google',googleAuthCtrl );
  *         description: Error en la autenticación
  */
 router.get('/auth/google/callback', googleAuthCallback);
+/**
+ * @swagger
+ * /api/auth/refresh:
+ *   post:
+ *     summary: Renueva el token JWT usando el refresh token
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               refreshToken:
+ *                 type: string
+ *                 description: El refresh token del usuario
+ *     responses:
+ *       200:
+ *         description: Nuevo token JWT generado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 token:
+ *                   type: string
+ *                   description: El nuevo token JWT
+ *       403:
+ *         description: Refresh token inválido
+ */
 
 export default router;
